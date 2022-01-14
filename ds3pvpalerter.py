@@ -53,5 +53,6 @@ if __name__ == "__main__":
             send_invasion_alert(twilio_client)
             # Timeout is needed because notification pops up 3 times for many frames.
             # Program will send a huge amount of text messages without this for a single invasion.
-            # 45 seconds *should* be short enough to catch a second pvp event, might need to shorten.
-            time.sleep(45)
+            # 60 seconds *should* be short enough to catch a second pvp event, might need to shorten.
+            time.sleep(60)
+            print("Timeout period over. Searching again.")
