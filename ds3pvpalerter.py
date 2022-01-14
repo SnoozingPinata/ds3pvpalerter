@@ -54,5 +54,7 @@ if __name__ == "__main__":
             # Timeout is needed because notification pops up 3 times for many frames.
             # Program will send a huge amount of text messages without this for a single invasion.
             # 60 seconds *should* be short enough to catch a second pvp event, might need to shorten.
-            time.sleep(60)
+            time.sleep(300)
             print("Timeout period over. Searching again.")
+        else:
+            time.sleep(1)
