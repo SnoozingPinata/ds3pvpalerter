@@ -1,15 +1,19 @@
 from mimetypes import init
+from re import search
 from charset_normalizer import detect
 import pyautogui
 import keys
 import twilio.rest
 import time
 
+def get_search_region():
+    screen_width, screen_height = pyautogui.size()
+    wqhd_region = (675, 965, 600, 10)
+    if screen_width == 2560 and screen_height == 1440:
+        return wqhd_region
 
-def invasion_detected():
-    # speed this up by passing regions to check based on screen width and height
-    # image is blinking off before program detects, must add region (possibly grayscale) to catch notice in time.
-    val = pyautogui.locateOnScreen('being_summoned_trim.png')
+def invasion_detected(search_region):
+    val = pyautogui.locateOnScreen(image='pvp_notification_bar.png', region=search_region, grayscale=True)
     if val != None:
         print(val)
         return True
@@ -18,16 +22,16 @@ def invasion_detected():
 
 def send_invasion_alert(client):
     client.messages.create(
-        body="Invasion Found!!!",
+        body="PVP Event Started!",
         from_=keys.twilio_number,
         to=keys.target_number
     )
 
 
 if __name__ == "__main__":
-    screen_width, screen_height = pyautogui.size()
+    search_region = get_search_region()
     twilio_client = twilio.rest.Client(keys.account_sid, keys.auth_token)
     while True:
-        if invasion_detected():
+        if invasion_detected(search_region):
             send_invasion_alert(twilio_client)
-            time.sleep(30)
+            time.sleep(45)
