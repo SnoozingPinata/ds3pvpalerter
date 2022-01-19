@@ -1,6 +1,3 @@
-from mimetypes import init
-from re import search
-from charset_normalizer import detect
 import pyautogui
 import keys
 import twilio.rest
