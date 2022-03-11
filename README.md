@@ -1,7 +1,7 @@
 # ds3pvpalerter
 Sends a text message to your cell phone alerting you of pvp events in dark souls 3.
 
-**This project is still in an early stage and requires some technical knowledge to install/setup.**
+**This project requires some technical knowledge to install/setup.**
 
 # Installation
 - Install python 3.10
